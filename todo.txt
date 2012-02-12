@@ -1,0 +1,7 @@
+-document django.wsgi and make it more clear
+-create README
+-create sample settings.py
+
+# High Priority
+-form wizard
+-create create-article functionality
