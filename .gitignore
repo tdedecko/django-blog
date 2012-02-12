@@ -1,0 +1,5 @@
+*.pyc
+blog/settings.py
+blog/manage.py
+blog/static/admin
+blog/static/admin/*

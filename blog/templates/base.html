@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+    <title>Super Blog - {% block title %}{% endblock %}</title>
+</head>
+	<body>
+    	<a href="{% url index %}"><h1>Super Blog</h1></a>
+    	{% if user.is_authenticated %}
+			<p>Welcome, <b>{{ user.username }}</b> <a href="{% url logout %}">Log out</a></p>
+		{% else %}
+    		<p>Welcome, new user. Please <a href="{% url login %}">Log in</a>.</p>
+		{% endif %}
+    	<ul>
+    		{% if user.is_authenticated %}
+				<li><a href="{% url create-article %}">Create new blog post</a></li>
+			{% endif %}
+		</ul> 
+    	{% block content %}{% endblock %}
+	</body>
+</html>
