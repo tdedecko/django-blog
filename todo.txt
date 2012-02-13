@@ -4,8 +4,6 @@
 -serve files by apache configuration
 
 # High Priority
-display articles
-ensure users are admin
 edit articles
 delete articles
 pull in blueprint

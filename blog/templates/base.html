@@ -12,10 +12,19 @@
     		<p>Welcome, new user. Please <a href="{% url login %}">Log in</a>.</p>
 		{% endif %}
     	<ul>
-    		{% if user.is_authenticated %}
+    		{% if user.is_staff %}
 				<li><a href="{% url create-article %}">Create new blog post</a></li>
 			{% endif %}
-		</ul> 
+		</ul>
+		
+		{% if messages %}
+			<ul class="messages">
+    			{% for message in messages %}
+    				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    			{% endfor %}
+			</ul>
+		{% endif %}
+		
     	{% block content %}{% endblock %}
 	</body>
 </html>

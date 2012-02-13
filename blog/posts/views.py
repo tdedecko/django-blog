@@ -2,7 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from blog.wrappers import render_response
-from django.contrib.auth.decorators import login_required
+from blog.decorators import staff_only
+from django.contrib import messages
 from blog.posts.models import Article, ArticleForm
 
 def index(request):
@@ -13,14 +14,14 @@ def article(request, slug):
     selected_article = get_object_or_404(Article, slug=slug)
     return render_response(request, 'article.html', {'article' : selected_article})
 
-@login_required
+@staff_only
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, instance=Article(author=request.user))
-        if form.is_valid():
-            
-            form.save()
-            return HttpResponseRedirect(reverse('index'))
+        if form.is_valid(): 
+            new_article = form.save()
+            messages.info(request, 'Your article was successfully created!')
+            return HttpResponseRedirect(reverse('article', args=[new_article.slug]))
     else:
         form = ArticleForm()
     return render_response(request, 'create-article.html', {'form': form,})
