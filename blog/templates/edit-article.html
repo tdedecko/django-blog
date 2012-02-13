@@ -2,14 +2,22 @@
 
 {% block content %}
 
-{% if form.instance.slug %}
-<form action="{% url edit-article form.instance.slug %}" method="post">
-{% else %}
-<form action="{% url create-article %}" method="post">
-{% endif %}
+<div class="span-24 last">
+	<h4><b>Create an awesome post!</b></h4>
+</div>
+
+<div class="span-22 prepend-1 append-1 last">
+	{% if form.instance.slug %}
+		<form action="{% url edit-article form.instance.slug %}" method="post">
+	{% else %}
+		<form action="{% url create-article %}" method="post">
+	{% endif %}
+	
 	{% csrf_token %}
-	{{ form.as_p }}
+	{% include "base-form.html" %}
 	<input type="submit" value="Submit" />
-</form>
+	
+	</form>
+</div>
 
 {% endblock %}

@@ -27,6 +27,12 @@ class ArticleForm(ModelForm):
                 raise ValidationError(unique_slug_message)
         return self.cleaned_data
     
+    def __init__(self, *args, **kwargs):
+        super(ArticleForm, self).__init__(*args, **kwargs) # Call to ModelForm constructor
+        self.fields['title'].widget.attrs['class'] = 'title article-title'
+        self.fields['body'].widget.attrs['class'] = 'article'
+
+    
     class Meta:
         model = Article
         fields = ('title', 'body')
