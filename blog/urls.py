@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^actions/create/', 'blog.posts.views.create_article', name='create-article'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^posts/(?P<slug>[-\w]+)/$','blog.posts.views.article', name='article'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

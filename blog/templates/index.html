@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-List of articles
+<h3>List of articles</h3>
+{% for article in articles %}
+	<a href="{% url article article.slug %}">{{article.title}}</a><br/>
+{% endfor %}
 {% endblock %}
