@@ -10,4 +10,21 @@
 		<div class="article-body">{{article.body}}</div>
 	</div>
 {% endfor %}
+<div class="span-20 append-2 prepend-2 last">
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if articles.has_previous %}
+	            <a href="?page={{ articles.previous_page_number }}">previous</a>
+	        {% endif %}
+	
+	        <span class="current">
+	            Page {{ articles.number }} of {{ articles.paginator.num_pages }}.
+	        </span>
+	
+	        {% if articles.has_next %}
+	            <a href="?page={{ articles.next_page_number }}">next</a>
+	        {% endif %}
+	    </span>
+	</div>
+</div>
 {% endblock %}

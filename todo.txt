@@ -2,7 +2,5 @@
 -create README
 -create sample settings.py
 -serve files by apache configuration
-
-# High Priority
-paginate
-style form pages
+-deploy to github
+-deplay to my server

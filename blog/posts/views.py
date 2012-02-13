@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from blog.wrappers import render_response
@@ -8,7 +9,17 @@ from blog.posts.models import Article, ArticleForm
 
 def index(request):
     all_articles = Article.objects.all().order_by('-publish_date')
-    return render_response(request, 'index.html', {'articles' : all_articles})
+    paginator = Paginator(all_articles, 3)
+    page = request.GET.get('page')
+    try:
+        articles_list = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        articles_list = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        articles_list = paginator.page(paginator.num_pages)
+    return render_response(request, 'index.html', {'articles' : articles_list})
 
 def article(request, slug):
     selected_article = get_object_or_404(Article, slug=slug)
