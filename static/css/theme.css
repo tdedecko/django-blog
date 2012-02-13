@@ -1,15 +1,31 @@
-.header-bar {
+html, body {
+	height: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -58px;
+}
+
+.footer, .push {
+	height: 58px;
+}
+
+.header {
 	width: 100%;
 	background-color: #cccccc;
 }
 
-.footer-bar {
+.footer {
 	width: 100%;
 	background-color: #cccccc;
 }
 
-.footer-bar p {
-	padding: 20px;
+.footer p {
+	padding: 15px;
+	height: 10px;
 	text-align: center;
 	font-weight: bold;
   	color: #000000;

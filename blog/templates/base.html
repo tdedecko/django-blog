@@ -11,33 +11,38 @@
     <title>Super Blog{% block title %}{% endblock %}</title>
 </head>
 	<body>
-		<div class="header-bar">
+		<div class="wrapper">
+			<div class="header">
     			<a class="nav-button logo" href="{% url index %}">Super Blog</a>
-				<a class="nav-button" href="{% url create-article %}">Create Post</a></li>
-				{% block staff-actions %}{% endblock %}
-			<div style="float: right;">
-    			{% if user.is_authenticated %}
-					<p class="login-info">Welcome, <b>{{ user.username }}</b> <a href="{% url logout %}">Log out</a></p>
-				{% else %}
-    				<p class="login-info">Welcome, new user. Please <a href="{% url login %}">Log in</a>.</p>
+    			{% if user.is_staff %}
+					<a class="nav-button" href="{% url create-article %}">Create Post</a></li>
+					{% block staff-actions %}{% endblock %}
 				{% endif %}
+				<div style="float: right;">
+    				{% if user.is_authenticated %}
+						<p class="login-info">Welcome, <b>{{ user.username }}</b> <a href="{% url logout %}">Log out</a></p>
+					{% else %}
+    					<p class="login-info">Welcome, new user. Please <a href="{% url login %}">Log in</a>.</p>
+					{% endif %}
+				</div>
 			</div>
-		</div>
-		<div class="container">
+			<div class="container">
 		
-			<div class="span-24 last">
-				{% if messages %}
-    				{% for message in messages %}
-    					<p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-    				{% endfor %}
-				{% endif %}
-			</div>
+				<div class="span-24 last">
+					{% if messages %}
+    					{% for message in messages %}
+    						<p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    					{% endfor %}
+					{% endif %}
+				</div>
 		
-    		{% block content %}{% endblock %}
+    			{% block content %}{% endblock %}
     		
-    		<div class="span-24 last">&nbsp;</div>
+    			<div class="span-24 last"></div>
+    		</div>
+    		<div class="push"></div>
     	</div>
-    	<div class="footer-bar">
+    	<div class="footer">
     		<p>Created by Thom Dedecko for Votizen</p>
     	</div>
 	</body>
