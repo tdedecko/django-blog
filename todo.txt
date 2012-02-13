@@ -4,6 +4,6 @@
 -serve files by apache configuration
 
 # High Priority
+display like real blog homepage
 pull in blueprint
-comment on articles
 paginate
