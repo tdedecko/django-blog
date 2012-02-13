@@ -3,6 +3,9 @@
 {% block content %}
 <h3>List of articles</h3>
 {% for article in articles %}
-	<a href="{% url article article.slug %}">{{article.title}}</a><br/>
+	<h4><a href="{% url article article.slug %}">{{article.title}}</a><h4>
+	<blockquote>
+	{{article.body}}
+	</blockquote>
 {% endfor %}
 {% endblock %}
