@@ -2,27 +2,21 @@
 
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+<div class="span-24 last">
+	{% if form.errors %}
+		<div class="error">Your username and password didn't match. Please try again.</div>
+	{% endif %}
+</div>
 
-{% if not user.is_authenticated %}
-<form method="post" action="{% url login %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-{% endif %}
+<div class="span-10 prepend-8 append-8 last">
+	{% if not user.is_authenticated %}
+		<form method="post" action="{% url login %}">
+			{% csrf_token %}
+			{% include "base-form.html" %}
+			<input type="submit" value="login" />
+			<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+	{% endif %}
+</div>
 
 {% endblock %}
