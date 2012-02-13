@@ -1,12 +1,18 @@
-from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.core.urlresolvers import reverse
+from blog.wrappers import render_response
 from django.contrib.auth.decorators import login_required
-from django.template import RequestContext
+from blog.posts.models import ArticleForm
 
 def index(request):
-    return render_to_response('index.html', RequestContext(request))
+    return render_response(request, 'index.html')
 
 @login_required
 def create_article(request):
-    return render_to_response('create-article.html', RequestContext(request))
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect(reverse('index'))
+    else:
+        form = ArticleForm()
+    return render_response(request, 'create-article.html', {'form': form,})
