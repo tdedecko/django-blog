@@ -9,22 +9,31 @@
 {% endblock %}
 
 {% block content %}
-<h3>{{article.title}}</h3>
-<p>{{article.body}}</p>
 
-{% get_comment_count for article as comment_count %} 
-<p>{{comment_count}} comment{{ comment_count|pluralize }} on this article.</p>
+<div class="span-22 append-1 prepend-1 last">
+	<span class="article-title">{{article.title}}</span>
+</div>
+<div class="span-20 append-2 prepend-2 last">
+	<div class="article-body">{{article.body}}</div>
+</div>
+<div class="span-22 append-1 prepend-1 last">
+	{% get_comment_count for article as comment_count %} 
+	<h4><b>Join the conversation ({{comment_count}} comment{{ comment_count|pluralize }})</b></h4>
+</div>
 
-<div>{% render_comment_list for article %}</div>
+<div class="span-20 append-2 prepend-2 last">
+{% render_comment_list for article %}
+</div>
 
-<div>
-{% get_comment_form for article as form %}
-  <form action="{% comment_form_target %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="submit" value="Post">
-    <input type="hidden" name="next" value="{% url article article.slug %}" />
-  </form>
+<div class="span-22 append-1 prepend-1 last">
+	<h4><b>Post a comment</b></h4>
+	{% get_comment_form for article as form %}
+  	<form action="{% comment_form_target %}" method="post">
+    	{% csrf_token %}
+    	{{ form.as_p }}
+   		<input type="submit" name="submit" value="Post">
+   		<input type="hidden" name="next" value="{% url article article.slug %}" />
+	</form>
 </div>
 
 {% endblock %}

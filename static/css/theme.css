@@ -30,3 +30,15 @@
   	color: #000000;
   	font-size: 2.5em;
 }
+
+.article-body {
+	color: #000000;
+  	font-size: 1.4em;
+  	padding-top: 10px;
+  	padding-bottom: 20px;
+}
+
+textarea.comment {
+	width: 600px;
+	height: 200px;
+}
