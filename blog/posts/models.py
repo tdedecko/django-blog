@@ -2,7 +2,6 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.forms import ModelForm, ValidationError
-from django.db import IntegrityError
 
 class Article(models.Model):
     title = models.CharField(max_length=200)

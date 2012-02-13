@@ -1,7 +1,9 @@
 -document django.wsgi and make it more clear
 -create README
 -create sample settings.py
+-serve files by apache configuration
 
 # High Priority
--form wizard
--create create-article functionality
+display articles
+edit articles
+delete articles
