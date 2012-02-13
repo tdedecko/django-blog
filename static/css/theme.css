@@ -1,0 +1,32 @@
+.header-bar {
+	width: 100%;
+	background-color: #cccccc;
+}
+
+.nav-button {
+	display: inline-block;
+	padding: 20px;
+	text-decoration: none;
+  	font-weight: bold;
+  	color: #000000;
+  	background-color: #cccccc;
+}
+
+.nav-button:hover {
+	background-color: #eeeeee;
+}
+
+.logo {
+	font-size: 2em;
+}
+
+.login-info {
+	padding: 30px;
+}
+
+.article-title {
+	text-decoration: none;
+  	font-weight: bold;
+  	color: #000000;
+  	font-size: 2.5em;
+}

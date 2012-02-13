@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>List of articles</h3>
 {% for article in articles %}
-	<h4><a href="{% url article article.slug %}">{{article.title}}</a><h4>
-	<blockquote>
-	{{article.body}}
-	</blockquote>
+	<div class="span-22 append-1 prepend-1 last">
+		<a class="article-title" href="{% url article article.slug %}">{{article.title}}</a>
+	</div>
+	
+	<div class="span-20 append-2 prepend-2 last">
+		{{article.body}}
+	</div>
 {% endfor %}
 {% endblock %}

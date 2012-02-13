@@ -4,8 +4,8 @@
 {% block title %}: {{article.title}}{% endblock %}
 
 {% block staff-actions %}
-<li><a href="{% url edit-article article.slug %}">Edit blog post</a></li>
-<li><a href="{% url delete-article article.slug %}">Delete blog post</a></li>
+<a class="nav-button" href="{% url edit-article article.slug %}">Edit This Post</a>
+<a class="nav-button" href="{% url delete-article article.slug %}">Delete This Post</a>
 {% endblock %}
 
 {% block content %}
