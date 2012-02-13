@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% load comments %}
+  <div class="span-22 append-1 prepend-1 last">
+  	<h3><b>Please enter a comment!</b></h3>
+  </div>
+  <div class="span-22 append-1 prepend-1 last">
+  <form action="{% comment_form_target %}" method="post">{% csrf_token %}
+    {% if next %}<div><input type="hidden" name="next" value="{{ next }}" /></div>{% endif %}
+    {% for field in form %}
+      {% if field.is_hidden %}
+        <div>{{ field }}</div>
+      {% else %}
+        <div {% if field.errors %}class="error"{% endif %}>
+            {{ field.label_tag }}<br/>
+    		{{ field }}
+    		{% for err in field.errors %}
+    			<span class="error_message">{{ err }}</span>
+    		{% endfor %}
+  		</div>
+        <p
+          {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+        </p>
+      {% endif %}
+    {% endfor %}
+    <p class="submit">
+    <input type="submit" name="submit" class="submit-post" value="Post" />
+    </p>
+  </form>
+  </div>
+{% endblock %}
