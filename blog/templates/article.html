@@ -2,7 +2,10 @@
 
 {% block title %}: {{article.title}}{% endblock %}
 
-{% block staff-actions %}<li><a href="{% url edit-article article.slug %}">Edit blog post</a></li>{% endblock %}
+{% block staff-actions %}
+<li><a href="{% url edit-article article.slug %}">Edit blog post</a></li>
+<li><a href="{% url delete-article article.slug %}">Delete blog post</a></li>
+{% endblock %}
 
 {% block content %}
 <h3>{{article.title}}</h3>

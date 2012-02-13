@@ -34,4 +34,13 @@ def edit_article(request, slug=None):
     else:
         form = ArticleForm(instance=selected_article)
     return render_response(request, 'edit-article.html', {'form': form,})
+
+@staff_only
+def delete_article(request, slug=None):
+    selected_article = get_object_or_404(Article, slug=slug)
+    if selected_article.author != request.user:
+        raise HttpResponseForbidden()
     
+    selected_article.delete()
+    messages.info(request, 'Your article was deleted successfully!')
+    return HttpResponseRedirect(reverse('index'))
