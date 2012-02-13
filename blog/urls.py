@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^posts/(?P<slug>[-\w]+)/edit/$','blog.posts.views.edit_article', name='edit-article'),
     url(r'^posts/(?P<slug>[-\w]+)/delete/$','blog.posts.views.delete_article', name='delete-article'),
     url(r'^posts/(?P<slug>[-\w]+)/$','blog.posts.views.article', name='article'),
+    url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

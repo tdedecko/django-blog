@@ -6,5 +6,4 @@
 # High Priority
 pull in blueprint
 comment on articles
-userprofiles
 paginate

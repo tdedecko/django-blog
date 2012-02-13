@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.http import HttpResponseRedirect
 
+# Based on http://passingcuriosity.com/2009/writing-view-decorators-for-django/
 def staff_only(function=None):
     def _dec(view_func):
         def _view(request, *args, **kwargs):
