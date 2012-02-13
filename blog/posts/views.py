@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from blog.wrappers import render_response
@@ -15,13 +15,23 @@ def article(request, slug):
     return render_response(request, 'article.html', {'article' : selected_article})
 
 @staff_only
-def create_article(request):
+def edit_article(request, slug=None):
+    if slug is None: # New Article
+        success_message = 'Your article was created successfully!'
+        selected_article = Article(author=request.user)
+    else: # Edit existing article
+        success_message = 'Your article was edited successfully!'
+        selected_article = get_object_or_404(Article, slug=slug)
+        if selected_article.author != request.user:
+            raise HttpResponseForbidden()
+    
     if request.method == 'POST':
-        form = ArticleForm(request.POST, instance=Article(author=request.user))
+        form = ArticleForm(request.POST, instance=selected_article)
         if form.is_valid(): 
             new_article = form.save()
-            messages.info(request, 'Your article was successfully created!')
+            messages.info(request, success_message)
             return HttpResponseRedirect(reverse('article', args=[new_article.slug]))
     else:
-        form = ArticleForm()
-    return render_response(request, 'create-article.html', {'form': form,})
+        form = ArticleForm(instance=selected_article)
+    return render_response(request, 'edit-article.html', {'form': form,})
+    

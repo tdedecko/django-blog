@@ -2,6 +2,8 @@
 
 {% block title %}: {{article.title}}{% endblock %}
 
+{% block staff-actions %}<li><a href="{% url edit-article article.slug %}">Edit blog post</a></li>{% endblock %}
+
 {% block content %}
 <h3>{{article.title}}</h3>
 <p>{{article.body}}</p>

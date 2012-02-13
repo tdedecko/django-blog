@@ -4,7 +4,6 @@
 -serve files by apache configuration
 
 # High Priority
-edit articles
 delete articles
 pull in blueprint
 comment on articles

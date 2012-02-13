@@ -18,12 +18,14 @@ class Article(models.Model):
 
 class ArticleForm(ModelForm):
     def clean(self):
-        cleaned_data = self.cleaned_data
-        if cleaned_data.has_key('title'):
-            slug = slugify(cleaned_data['title'])
-            if Article.objects.filter(slug=slug):
-                raise ValidationError("Article title is similar to existing articles. Try something new!")
-        return cleaned_data
+        # Ensure unique slugs
+        unique_slug_message = "Article title is similar to existing articles. Try something new!"
+        if self.cleaned_data.has_key('title'):
+            slug = slugify(self.cleaned_data['title'])
+            articles_with_same_slug = Article.objects.filter(slug=slug).exclude(id=self.instance.id)
+            if articles_with_same_slug:
+                raise ValidationError(unique_slug_message)
+        return self.cleaned_data
     
     class Meta:
         model = Article

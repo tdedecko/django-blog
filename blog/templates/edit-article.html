@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.instance.slug %}
+<form action="{% url edit-article form.instance.slug %}" method="post">
+{% else %}
+<form action="{% url create-article %}" method="post">
+{% endif %}
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
