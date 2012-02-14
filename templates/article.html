@@ -14,7 +14,7 @@
 	<span class="article-title">{{article.title}}</span>
 </div>
 <div class="span-20 append-2 prepend-2 last">
-	<div class="article-body">{{article.body}}</div>
+	<div class="article-body">{{article.body|linebreaksbr}}</div>
 </div>
 <div class="span-22 append-1 prepend-1 last">
 	{% get_comment_count for article as comment_count %} 

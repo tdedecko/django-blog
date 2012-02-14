@@ -11,6 +11,8 @@ def index(request):
     all_articles = Article.objects.all().order_by('-publish_date')
     paginator = Paginator(all_articles, 3)
     page = request.GET.get('page')
+    if page is None:
+        page = 1
     try:
         articles_list = paginator.page(page)
     except PageNotAnInteger:
