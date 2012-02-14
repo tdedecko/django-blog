@@ -1,6 +1,0 @@
--document django.wsgi and make it more clear
--create README
--create sample settings.py
--serve files by apache configuration
--deploy to github
--deplay to my server
